@@ -1,0 +1,41 @@
+{% extends "WebDjango/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h1>Bienvenido al menu de búsqueda de usuario</h1>
+  
+
+    <h3>Introduce un mail para buscar un usuario:</h3>
+
+    <form action="/WebDjango/buscar/" method="GET">
+
+        <input type="email" name="email" id="email">
+
+        <input type="submit" value="Buscar">
+
+
+
+
+    </form>
+
+    
+
+    {% if usuarios %}
+
+    <p>Estamos buscando el: {{email}}</p>
+
+    <ul>
+	{% for usuario in usuarios %}
+		<li> {{usuario.nombre}} </li>
+		<li> {{usuario.email}} </li>
+	{% endfor %}
+
+    </ul>
+
+    {% endif %}
+
+{% endblock %}
