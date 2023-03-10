@@ -13,3 +13,7 @@ Pre entrega CoderHouse
 -Busqueda de usuarios por su correo
 
 -Busqueda de articulos por su nombre
+
+## Panel de Administrador
+usuario: Stefano
+contraseña: Sadmin12
