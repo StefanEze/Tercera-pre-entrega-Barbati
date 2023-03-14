@@ -8,9 +8,9 @@ class UsuarioFormulario(forms.Form):
     email=forms.EmailField()
 
 class ArticuloFormulario(forms.Form):
-    nombres = models.CharField(max_length=30)
-    cantidad = models.IntegerField()
+    nombre = forms.CharField(max_length=30)
+    cantidad = forms.IntegerField()
 
 class EnvioFormulario(forms.Form):
-    fecha = models.DateField()
-    recibido = models.BooleanField()
+    fecha = forms.DateField()
+    recibido = forms.BooleanField()

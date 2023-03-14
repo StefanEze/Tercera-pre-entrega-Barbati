@@ -2,7 +2,6 @@ from django.shortcuts import render
 from WebDjango.models import *
 from WebDjango.forms import *
 
-# Create your views here.
 
 def inicio(request):
     return render(request,"WebDjango/inicio.html")
@@ -11,11 +10,12 @@ def inicio(request):
 
 #--------------------------------------------------------USUARIOS--------------------------------------------------------
 
+#Esta función muestra el formulario
 def usuarios(request):
     if request.method == "POST":
         miFormulario = UsuarioFormulario(request.POST) #Aqui me llega la informacion del html
         print(miFormulario)
-        if miFormulario.is_valid:
+        if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
             usuario = Usuario(nombre=informacion['nombre'], apellido=informacion['apellido'], email=informacion['email'])
             usuario.save()
@@ -30,7 +30,7 @@ def busquedaEmail(request):
     return render(request, "WebDjango/busquedaEmail.html")
 
 
-
+#Esta función busca los datos registrados 
 def buscar(request):
     if request.GET['email']:
         email = request.GET['email']
@@ -44,14 +44,15 @@ def buscar(request):
 
 #--------------------------------------------------------ARTICULOS--------------------------------------------------------
 
+#Esta función muestra el formulario
 def articulos(request):
     if request.method == "POST":
         elFormulario = ArticuloFormulario(request.POST) #Aqui me llega la informacion del html
         print(elFormulario)
 
-        if elFormulario.is_valid:
+        if elFormulario.is_valid():
             informacion = elFormulario.cleaned_data
-            articulo = Articulo( nombres = informacion["nombres"], cantidad=informacion['cantidad'])
+            articulo = Articulo( nombre = informacion["nombre"], cantidad=informacion['cantidad'])
             articulo.save()
             return render(request, "WebDjango/inicio.html")
     
@@ -66,12 +67,12 @@ def busquedaNombre(request):
     return render(request, "WebDjango/busquedaNombre.html")
 
 
-
+#Esta función busca los datos registrados 
 def buscarNombre(request):
-    if request.GET['nombres']:
-        nombres = request.GET['nombres']
-        articulos = Articulo.objects.filter(nombre__icontains=nombres)
-        return render(request,'WebDjango/articuloresp.html', {"articulos":articulos, "nombres":nombres})
+    if request.GET['nombre']:
+        nombre = request.GET['nombre']
+        articulos = Articulo.objects.filter(nombre__icontains=nombre)
+        return render(request,'WebDjango/articuloresp.html', {"articulos":articulos, "nombre":nombre})
     else:
         respuesta ="No enviaste datos."
     return render(request,'WebDjango/articuloresp.html',{"respuesta":respuesta})
@@ -79,12 +80,13 @@ def buscarNombre(request):
 
 #--------------------------------------------------------ENVIOS--------------------------------------------------------
 
+#Esta función muestra el formulario
 def envios(request):
     if request.method == "POST":
         miFormulario = EnvioFormulario(request.POST) #Aqui me llega la informacion del html
         print(miFormulario)
 
-        if miFormulario.is_valid:
+        if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
             envio = Envio(fecha=informacion['fecha'], recibido=informacion['recibido'])
             envio.save()
@@ -92,22 +94,5 @@ def envios(request):
     
     else:
         miFormulario = EnvioFormulario()
-    
+
     return render(request, "WebDjango/envios.html", {"miFormulario":miFormulario})
-
-
-
-def busquedaNombre(request):
-    return render(request, "WebDjango/busquedaNombre.html")
-
-
-
-def buscarNombre(request):
-    if request.GET['nombre']:
-        nombre = request.GET['nombre']
-        articulos = Articulo.objects.filter(nombre__icontains=nombre)
-        return render(request,'WebDjango/usuarioresp.html', {"articulos":articulos, "nombre":nombre})
-    else:
-        respuesta ="No enviaste datos."
-    return render(request,'WebDjango/articuloresp.html',{"respuesta":respuesta})
-

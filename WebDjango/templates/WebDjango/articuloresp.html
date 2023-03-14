@@ -8,11 +8,11 @@
     <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
     <h1>Bienvenido al menu de búsqueda de articulos</h1>
 
-    <h3>Introduce el nombre del articulo:</h3>
+    <h3>Introduce el nombre del articulo para buscarlo:</h3>
 
     <form action="/WebDjango/buscarNombre/" method="GET">
 
-        <input type="text" name="nombres" id="nombres">
+        <input type="text" name="nombre" id="nombre">
 
         <input type="submit" value="Buscar">
 
@@ -25,11 +25,11 @@
 
     {% if articulos %}
 
-    <p>Articulos registrados con:<h4>{{nombres}}</h4></p>
+    <p>Articulos registrados con:<h4>{{nombre}}</h4></p>
 
     <ul>
 	{% for articulo in articulos %}
-		<li> {{articulo.nombres}}  </li>
+		<li> {{articulo.nombre}}  </li>
 	{% endfor %}
 
     </ul>
