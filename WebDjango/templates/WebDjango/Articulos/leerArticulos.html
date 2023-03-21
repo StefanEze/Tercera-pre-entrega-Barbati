@@ -1,0 +1,21 @@
+{% extends "WebDjango/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <!-- Aqui va lo que cambia, y lo asociado a esta vista :) -->
+    <h1>Lista de Articulos</h1>
+    {% for a in articulo %}
+        <li>{{a}}</li>
+        <button>
+            <a href="{% url 'EliminarArticulo' a.nombre %}"> Eliminar</a>
+            <a href="{% url 'EditarArticulo' a.nombre %}"> Editar</a>
+        </button>
+    {% endfor %}
+    
+    <br>
+    <a href="{% url 'Articulos' %}">
+        Agregar otro articulo 
+    </a>
+{% endblock %}
