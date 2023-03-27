@@ -15,5 +15,5 @@ Pre entrega CoderHouse
 -Busqueda de articulos por su nombre
 
 ## Panel de Administrador
-usuario: Stefano
+usuario: Stefan
 contraseña: Sadmin12
