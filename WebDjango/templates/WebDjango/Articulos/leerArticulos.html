@@ -6,7 +6,7 @@
 
     <!-- Aqui va lo que cambia, y lo asociado a esta vista :) -->
     <h1>Lista de Articulos</h1>
-    {% for a in articulo %}
+    {% for a in articulos %}
         <li>{{a}}</li>
         <button>
             <a href="{% url 'EliminarArticulo' a.nombre %}"> Eliminar</a>
