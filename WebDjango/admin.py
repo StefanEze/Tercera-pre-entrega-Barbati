@@ -7,3 +7,5 @@ admin.site.register(Usuario)
 admin.site.register(Envio)
 
 admin.site.register(Articulo)
+
+admin.site.register(Avatar)

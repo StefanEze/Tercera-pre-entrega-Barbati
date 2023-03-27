@@ -3,7 +3,6 @@ from WebDjango import views
 from django.contrib.auth.views import LogoutView
 
 
-app_name = 'WebDjango'
 
 urlpatterns = [
     path('', views.inicio, name='Inicio'),
@@ -29,4 +28,5 @@ urlpatterns = [
     path('register', views.register ,name ="Register"),
     path("logout",LogoutView.as_view(template_name="WebDjango/logout.html"),name = "Logout"),
     path("editarPerfil", views.editarPerfil, name="EditarPerfil"),
+    path("agregarAvatar",views.agregarAvatar,name="AgregarAvatar"),
     ]

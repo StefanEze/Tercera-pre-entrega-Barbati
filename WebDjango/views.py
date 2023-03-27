@@ -8,14 +8,15 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from WebDjango.forms import UserEditForm, UserRegisterForm
+from WebDjango.forms import *
 from django.contrib.auth.hashers import make_password
 
 
 
 @login_required
 def inicio(request):
-    return render(request,"WebDjango/inicio.html")
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request,"WebDjango/inicio.html",{'url':avatares[0].imagen.url})
 
 
 
@@ -304,4 +305,21 @@ def editarPerfil(request):
         else:
             miFormulario = UserEditForm(initial={"email":usuario.email})
 
-        return render(request,"editarPerfil.html", {"miFormulario":miFormulario,"usuario":usuario})
+        return render(request,"webDjango/editarPerfil.html", {"miFormulario":miFormulario,"usuario":usuario})
+    
+
+#--------------------------------------------------------AVATAR--------------------------------------------------------
+
+@login_required
+def agregarAvatar(request):
+    if request.method =='POST':
+        miFormulario = AvatarFormulario(request.POST, request.FILES)
+        if miFormulario.is_valid():
+            u = User.objects.get(username=request.user)
+            avatar= Avatar(user=u, imagen=miFormulario.cleaned_data['imagen'])
+            avatar.save()
+
+            return render(request,'inicio.html')
+    else:
+        miFormulario= AvatarFormulario()
+    return render(request,'WebDjango/agregarAvatar.html', {'miFormulario':miFormulario})
