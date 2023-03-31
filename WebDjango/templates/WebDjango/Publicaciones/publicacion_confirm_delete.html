@@ -5,7 +5,7 @@
 {% block contenidoQueCambia %}
 
     <form method="post">{% csrf_token %}
-        ¿Estás seguro que deseas cancelar el envio "{{ object }}"?
+        ¿Estás seguro que deseas eliminar la publicacion "{{ object }}"?
         <input type="submit" value="Submit" />
     </form>
 

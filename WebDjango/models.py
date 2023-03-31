@@ -1,13 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 # Create your models here.
-class Usuario(models.Model):
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    email = models.EmailField()
+class Publicacion(models.Model):
+    titulo = models.CharField(max_length=60)
+    subtitulo = models.CharField(max_length=60)
+    cuerpo = models.CharField(max_length=500)
+    autor =models.CharField(max_length=30)
+    fecha= models.DateField(default=datetime.now)
+    imagen= models.ImageField(null=True, blank=True, upload_to="media/")
     
     def __str__(self):
-        return f"Nombre: {self.nombre} --- Emaill: {self.email}"
+        return f"{self.titulo}, publicado por {self.autor}"
 
 class Articulo(models.Model):
     nombre = models.CharField(max_length=35)

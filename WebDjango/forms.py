@@ -2,10 +2,13 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
-class UsuarioFormulario(forms.Form):
-    nombre=forms.CharField(max_length=30)
-    apellido=forms.CharField(max_length=30)
-    email=forms.EmailField()
+class PublicacionFormulario(forms.Form):
+    titulo = forms.CharField(max_length=60)
+    subtitulo = forms.CharField(max_length=60)
+    cuerpo = forms.CharField(max_length=500)
+    autor =forms.CharField(max_length=30)
+    date = forms.DateField()
+    image = forms.ImageField()
 
 class ArticuloFormulario(forms.Form):
     nombre = forms.CharField(max_length=30)

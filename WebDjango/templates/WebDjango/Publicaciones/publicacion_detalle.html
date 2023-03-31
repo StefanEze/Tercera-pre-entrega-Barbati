@@ -1,0 +1,16 @@
+{% extends "WebDjango/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+    <p>Titulo: <i>{{ publicacion.titulo }}</i></p>
+    <p>Subtitulo: <i>{{ publicacion.subtitulo }}</i></p>
+    <p>Cuerpo: <i>{{ publicacion.cuerpo }}</i></p>
+    <p>autor: <i>{{ publicacion.autor }}</i></p>
+    <p>fecha: <i>{{ publicacion.fecha }}</i></p>
+    <p>imagen: <i>{{ publicacion.imagen }}</i></p>
+    <p>
+        <a href="{% url 'List' %}">Regresar</a>
+    </p>
+
+{% endblock %}

@@ -4,11 +4,17 @@
 
 {% block contenidoQueCambia %}
 
-<h1>Programa un envio</h1>
-<h3>Completa el siguiente formulario con la fecha del dia que quieras recibir tu pedido:</h3>
+
+
+<h1>Realiza una publicacion</h1>
+<h3>Completar los siguientes datos:</h3>
 {% if miFormulario.errors %}
 <p style="color:red;">Estan mal los datos, revisar.</p>
 {% endif %}
+
+
+
+
 
 <form action="" method="POST">{% csrf_token %}
     

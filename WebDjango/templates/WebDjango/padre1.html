@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Grande Papá</title>
+        <title>Tercer Pre-Entrega</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{assets/favicon.ico}" />
         <!-- Bootstrap Icons-->
@@ -19,7 +19,6 @@
         <!-- SimpleLightbox plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="{% static 'WebDjango/css/styles.css' %}" rel="stylesheet" />  
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js" integrity="sha512-6DC1eE3AWg1bgitkoaRM1lhY98PxbMIbhgYCGV107aZlyzzvaWCW1nJW2vDuYQm06hXrW0As6OGKcIaAVWnHJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -28,43 +27,23 @@
 
     <body id="page-top">
         <!-- Navigation-->
-        <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-                    <a class="navbar-brand" href="{% url 'Inicio' %}">Alguna Idea?</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto my-2 my-lg-0">
-                        <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'Inicio' %}">Inicio <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Posts
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'Publicaciones' %}">Realizar una reseña</a>
-                            <a class="dropdown-item" href="{% url 'List' %}">reseñas</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar usuario" aria-label="Search">
-                        <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
-                    </form>
-                    {% if not request.user.is_authenticated %}
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{% url 'Inicio' %}">App Coder</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Usuarios' %}">Registra un nuevo usuario</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'BusquedaEmail' %}">Busca un usuario</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Envios' %}">Programar envios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Articulos' %}">Crea un nuevo articulo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'BusquedaNombre' %}">Busca un articulo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'LeerUsuarios' %}">Lista de usuarios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'LeerArticulos' %}">Lista de articulos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'List' %}">Lista de envios</a></li>
+                        {% if not request.user.is_authenticated %}
                         <a class="btn btn-primary" href="{%url 'Login'%}">Iniciar sesion</a>
-                    {% endif %}
+                        {% endif %}
                         
                         {% if request.user.is_authenticated %} 
                         <div class="dropdown">
@@ -75,14 +54,18 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="{% url 'EditarPerfil' %}">Editar Perfil</a>
-                                <a class="dropdown-item" href="{% url 'AgregarAvatar' %}">Cambiar Avatar</a>
+                                <a class="dropdown-item" href="{% url 'AgregarAvatar' %}">Agregar Avatar</a>
                                 <a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesión</a>
                             </div>
                         {% endif %}
                         </div>
-                    </div>
-                </nav>
-        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+
 
         <!-- Masthead-->
         <header class="masthead">
@@ -103,7 +86,7 @@
                 </div>
             </div>
         </header>
-
+        
         {% block contenidoQueCambia %}
 
 

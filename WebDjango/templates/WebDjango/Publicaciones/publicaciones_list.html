@@ -1,0 +1,31 @@
+{% extends "WebDjango/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <h1>Posts Recientes</h1>
+    <ul>
+        {% for publicacion in object_list %}
+
+            <li>
+                <p>{{ publicacion.titulo }} </p>
+                <p>{{ publicacion.subtitulo }} </p>
+                <p>{{ publicacion.cuerpo }} </p>
+                <p>{{ publicacion.autor }} </p>
+                <p>{{ publicacion.fecha }} </p>
+                <p>{{ publicacion.imagen }} </p>
+                <p>
+                    <a href="{% url 'Detail' publicacion.id %}">Ver</a>
+                    <a href="{% url 'Edit' publicacion.id %}">Editar</a>
+                    <a href="{% url 'Delete' publicacion.id %}">Borrar</a>
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <a href="{% url 'Publicaciones' %}">
+        Realizar otra reseña 
+    </a>
+{% endblock %}
